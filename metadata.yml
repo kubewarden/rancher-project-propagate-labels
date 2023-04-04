@@ -1,0 +1,21 @@
+rules:
+- apiGroups: [""]
+  apiVersions: ["v1"]
+  resources: ["pods"]
+  operations: ["CREATE"]
+mutating: false
+contextAware: false
+executionMode: kubewarden-wapc
+annotations:
+  # artifacthub specific:
+  io.artifacthub.displayName: Policy Name
+  io.artifacthub.resources: Pod
+  io.artifacthub.keywords: pod, cool policy, kubewarden
+  io.kubewarden.policy.ociUrl: ghcr.io/kubewarden/policies/rancher-project-propagate-labels
+  # kubewarden specific:
+  io.kubewarden.policy.title: rancher-project-propagate-labels
+  io.kubewarden.policy.description: Short description
+  io.kubewarden.policy.author: Flavio Castelli <fcastelli@suse.com>
+  io.kubewarden.policy.url: https://github.com/yourorg/rancher-project-propagate-labels
+  io.kubewarden.policy.source: https://github.com/yourorg/rancher-project-propagate-labels
+  io.kubewarden.policy.license: Apache-2.0
