@@ -1,0 +1,28 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rancher-project-reader
+  namespace: local
+rules:
+- apiGroups: ["management.cattle.io"]
+  resources: ["projects"]
+  # the `list` verb is not needed, the policy knows exactly which Project it
+  # wants to read
+  verbs: ["get"]
+---
+# Allows the policy-server ServiceAccount defined inside of the
+# kubewarden namespace to read Project resources defined inside
+# of the `local` namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-rancher-projects-local
+  namespace: local
+subjects:
+- kind: ServiceAccount
+  name: policy-server
+  namespace: kubewarden
+roleRef:
+  kind: Role
+  name: rancher-project-reader
+  apiGroup: rbac.authorization.k8s.io

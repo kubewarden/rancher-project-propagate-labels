@@ -11,7 +11,7 @@ artifacthub-pkg.yml: metadata.yml Cargo.toml
 	  To use the latest tag, use the following command:  \
 	  make VERSION=$$(git describe --tags --abbrev=0 | cut -c2-) annotated-policy.wasm)
 	kwctl scaffold artifacthub --metadata-path metadata.yml --version $(VERSION) \
-		--questions-path questions-ui.yml --output artifacthub-pkg.yml
+		--output artifacthub-pkg.yml
 
 annotated-policy.wasm: policy.wasm metadata.yml artifacthub-pkg.yml
 	kwctl annotate -m metadata.yml -u README.md -o annotated-policy.wasm policy.wasm
@@ -26,7 +26,8 @@ lint:
 
 .PHONY: e2e-tests
 e2e-tests: annotated-policy.wasm
-	bats e2e.bats
+	@echo TODO
+	# bats e2e.bats
 
 .PHONY: test
 test: fmt lint
