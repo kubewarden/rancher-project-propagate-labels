@@ -122,4 +122,3 @@ downstream_cluster_failure_mode: ignore
 
 The creation/update of Namespace resources would always be allowed inside of
 downstream clusters.
-```
