@@ -1,38 +1,125 @@
-Please, note well: this file and the scaffold were generated from [a
-template](https://github.com/kubewarden/rust-policy-template). Make
-this project yours!
+> **Note:** this is a context aware policy that requires Kubewarden 1.6
 
-You can use `cargo generate -g https://github.com/kubewarden/rust-policy-template.git`
-to create your Policy from this template.
+Rancher Manager has the concept of Project. A Project can hold many
+regular Kubernetes Namespaces.
 
-# Kubewarden policy rancher-project-propagate-labels
+This policy monitors the creation and update of of Namespace objects and,
+when they belong to a Project, it ensures a list of labels defined on the
+Project are propagated to the Namespace.
 
-## Description
+The labels defined on the Project have precedence over the ones defined
+inside of the Namespace.
 
-This policy will reject pods that have a name `invalid-pod-name`. If
-the pod to be validated has a different name, or if a different type
-of resource is evaluated, it will be accepted.
+On the Project, only the labels that start with the `propagate.` prefix
+are propagated to its Namespaces. The `propagate.` prefix is stripped when
+the copy operation is performed.
+
+Namespaces that do not belong to a Rancher Project are ignored by this policy.
+
+## Cluster access
+
+The policy requires access to the `management.cattle.io/projects`
+custom resources.
+
+The policy requires only `GET` access to Projects defined inside of the
+`local` Namespace.
+
+Given the following assumptions:
+
+* Kubewarden is deployed inside of the `kubewarden` Namespace
+* The policy is hosted by a PolicyServer that uses the `policy-server` ServiceAccount
+
+The following snippet will allow the policy to operate:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rancher-project-reader
+  namespace: local
+rules:
+- apiGroups: ["management.cattle.io"]
+  resources: ["projects"]
+  verbs: ["get"]
+---
+# Allows the policy-server ServiceAccount defined inside of the
+# kubewarden namespace to read Project resources defined inside
+# of the `local` namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-rancher-projects-local
+  namespace: local
+subjects:
+- kind: ServiceAccount
+  name: policy-server
+  namespace: kubewarden
+roleRef:
+  kind: Role
+  name: rancher-project-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+## Examples
+
+Given a Project that defines the following labels:
+
+* `propagate.kubewarden-profile` with value `strict`
+* `cost-center` with value `123`
+
+The creation of a Namespace without labels would be changed to ensure
+these labels are defined:
+
+* `kubewarden-profile` with value `strict`
+
+The creation of a Namespace that has the following labels:
+
+* `kubewarden-profile` with value `low`
+* `team` with value `hacking`
+
+Would be changed by the policy to ensure these labels are defined:
+
+* `kubewarden-profile` with value `strict`
+* `team` with value `hacking`
+
+## Limitations
+
+Currently the policy works only when deployed inside of the `local` Rancher cluster.
+That's because the Project resources are defined only inside of the cluster where
+Rancher Manager is running.
+
+When deployed to a downstream cluster, the policy isn't currently capable of
+querying the upstream Project that is being referenced by the Namespace.
+
+This limitation is going to be addressed by future releases.
 
 ## Settings
 
-This policy has no configurable settings. This would be a good place
-to document if yours does, and what behaviors can be configured by
-tweaking them.
+This policy has one configuration value `downstream_cluster_failure_mode`. This
+defines what the policy should do when it's being deployed into a downstream
+cluster.
 
-## License
+As explained before, the policy cannot evaluate Namespace defined inside of a
+downstream cluster. This configuration has two possible values:
 
+* `ignore`: accept the Namespace CREATE/UPDATE event. This is the default value
+* `fail`: reject the Namespace CREATE/UPDATE event
+
+For example, given the following configuration:
+
+```yaml
+downstream_cluster_failure_mode: fail
 ```
-Copyright (C) 2021 Flavio Castelli <fcastelli@suse.com>
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+The policy would reject the creation and update of Namespace when its being
+deployed inside of a downstream cluster.
 
-   http://www.apache.org/licenses/LICENSE-2.0
+On the other hand, given this configuration:
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+```yaml
+downstream_cluster_failure_mode: ignore
+```
+
+The creation/update of Namespace resources would always be allowed inside of
+downstream clusters.
 ```
