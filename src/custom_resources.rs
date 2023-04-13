@@ -1,6 +1,5 @@
 use k8s_openapi::apimachinery::pkg::api::resource::Quantity;
 use k8s_openapi::schemars;
-use serde;
 
 #[derive(Clone, Debug, PartialEq, schemars::JsonSchema, serde::Deserialize, serde::Serialize)]
 #[serde(rename_all = "camelCase")]
