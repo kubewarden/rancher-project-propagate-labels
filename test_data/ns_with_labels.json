@@ -1,26 +1,26 @@
 {
   "uid": "1299d386-525b-4032-98ae-1949f69f9cfc",
   "kind": {
-    "kind": "Pod",
+    "kind": "Namespace",
     "version": "v1"
   },
   "object": {
     "metadata": {
-      "name": "nginx"
+      "name": "test",
+      "annotations": {
+        "field.cattle.io/projectId": "local:p-5fcf4"
+      },
+      "labels": {
+        "io.kubewarden.psp_profile": "strict"
+      }
     },
     "spec": {
-      "containers": [
-        {
-          "image": "nginx",
-          "name": "nginx"
-        }
-      ]
     }
   },
   "operation": "CREATE",
   "requestKind": {
     "version": "v1",
-    "kind": "Pod"
+    "kind": "Namespace"
   },
   "userInfo": {
     "username": "alice",
