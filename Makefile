@@ -26,8 +26,7 @@ lint:
 
 .PHONY: e2e-tests
 e2e-tests: annotated-policy.wasm
-	@echo TODO
-	# bats e2e.bats
+	bats e2e.bats
 
 .PHONY: test
 test: fmt lint

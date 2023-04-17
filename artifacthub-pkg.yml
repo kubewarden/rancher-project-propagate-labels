@@ -7,7 +7,7 @@
 version: 0.1.0
 name: rancher-project-propagate-labels
 displayName: Rancher Project propagate labels
-createdAt: 2023-04-06T16:37:10.635644382Z
+createdAt: 2023-04-17T07:46:10.821806149Z
 description: Propagate labels from a Rancher Project to all the Namespace that belong to it
 license: Apache-2.0
 homeURL: https://github.com/kubewaden/rancher-project-propagate-labels
