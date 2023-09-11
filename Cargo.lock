@@ -292,36 +292,33 @@ checksum = "453ad9f582a441959e5f0d088b02ce04cfe8d51a8eaf077f12ac6d3e94164ca6"
 
 [[package]]
 name = "k8s-openapi"
-version = "0.19.0"
+version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "95578de7d6eac4fba42114bc751e38c59a739968769df1be56feba6f17fd148e"
+checksum = "edc3606fd16aca7989db2f84bb25684d0270c6d6fa1dbcd0025af7b4130523a6"
 dependencies = [
  "base64",
  "bytes",
  "chrono",
- "http",
- "percent-encoding",
  "schemars",
  "serde",
  "serde-value",
  "serde_json",
- "url",
 ]
 
 [[package]]
 name = "k8s-openapi-codegen-common"
-version = "0.19.0"
+version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "55788508671269725e7b52ee4d334f367dad19d398c18446625c8a0fef589a5f"
+checksum = "71f80e01ed6d5028b0733b3bc77fd038c6918ff4e951ce163485f32aa1ae57a7"
 dependencies = [
  "http",
 ]
 
 [[package]]
 name = "k8s-openapi-derive"
-version = "0.19.0"
+version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "39271d4ec5160c55815c979dd08be2501d9480ad9be0dc51f3c6f493900f45d0"
+checksum = "f11137da2211a90679eb3629dd506f56f03930eb58b2929791a49ee719bd8221"
 dependencies = [
  "http",
  "k8s-openapi-codegen-common",
@@ -332,9 +329,9 @@ dependencies = [
 
 [[package]]
 name = "kubewarden-policy-sdk"
-version = "0.9.7"
+version = "0.9.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb4fdd3b3a463c5efeed9a263ed6ba66173f34906527448837845d05365a45e3"
+checksum = "e81d08aff54734145fdf86116495ec9bc9f564847db9187f44fa08ae19d5f560"
 dependencies = [
  "anyhow",
  "cfg-if",
@@ -925,9 +922,9 @@ checksum = "ad2024452afd3874bf539695e04af6732ba06517424dbf958fdb16a01f3bef6c"
 
 [[package]]
 name = "url"
-version = "2.4.0"
+version = "2.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "50bff7831e19200a85b17131d085c25d7811bc4e186efdaf54bbd132994a88cb"
+checksum = "143b538f18257fac9cad154828a57c6bf5157e1aa604d4816b5995bf6de87ae5"
 dependencies = [
  "form_urlencoded",
  "idna",
