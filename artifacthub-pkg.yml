@@ -7,7 +7,7 @@
 version: 0.1.1
 name: rancher-project-propagate-labels
 displayName: Rancher Project propagate labels
-createdAt: 2023-07-10T08:53:20.168260313Z
+createdAt: 2023-10-16T07:29:53.186428439Z
 description: Propagate labels from a Rancher Project to all the Namespace that belong to it
 license: Apache-2.0
 homeURL: https://github.com/kubewaden/rancher-project-propagate-labels
@@ -26,6 +26,10 @@ install: |
   The policy can be obtained using [`kwctl`](https://github.com/kubewarden/kwctl):
   ```console
   kwctl pull ghcr.io/kubewarden/policies/rancher-project-propagate-labels:v0.1.1
+  ```
+  Then, generate the policy manifest and tune it to your liking. For example:
+  ```console
+  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/rancher-project-propagate-labels:v0.1.1
   ```
 maintainers:
 - name: Kubewarden developers
