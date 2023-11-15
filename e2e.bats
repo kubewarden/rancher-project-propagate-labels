@@ -6,8 +6,11 @@
     --allow-context-aware \
     --replay-host-capabilities-interactions test_data/session_project_found.yml \
     annotated-policy.wasm
+
+  # this prints the output when one the checks below fails
+  echo "output = ${output}"
+
   [ "$status" -eq 0 ]
-  echo "$output"
   [ $(expr "$output" : '.*"allowed":true.*') -ne 0 ]
   [ $(expr "$output" : '.*JSONPatch.*') -ne 0 ]
 }
@@ -18,8 +21,11 @@
     --allow-context-aware \
     --replay-host-capabilities-interactions test_data/session_project_found.yml \
     annotated-policy.wasm
+
+  # this prints the output when one the checks below fails
+  echo "output = ${output}"
+
   [ "$status" -eq 0 ]
-  echo "$output"
   [ $(expr "$output" : '.*"allowed":true.*') -ne 0 ]
   [ $(expr "$output" : '.*JSONPatch.*') -eq 0 ]
 }

@@ -1,8 +1,14 @@
 {
   "uid": "1299d386-525b-4032-98ae-1949f69f9cfc",
   "kind": {
+    "group": "",
     "kind": "Namespace",
     "version": "v1"
+  },
+  "resource": {
+    "group": "",
+    "version": "v1",
+    "resource": "namespaces"
   },
   "object": {
     "metadata": {
@@ -14,11 +20,11 @@
         "io.kubewarden.psp_profile": "strict"
       }
     },
-    "spec": {
-    }
+    "spec": {}
   },
   "operation": "CREATE",
   "requestKind": {
+    "group": "",
     "version": "v1",
     "kind": "Namespace"
   },
