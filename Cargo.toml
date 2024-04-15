@@ -23,4 +23,4 @@ slog = "2.7"
 [dev-dependencies]
 mockall = "0.12"
 serial_test = "3.0"
-rstest = "0.18"
+rstest = "0.19"
