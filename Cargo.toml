@@ -11,9 +11,9 @@ crate-type = ["cdylib"]
 
 [dependencies]
 anyhow = "1.0"
-k8s-openapi-derive = "0.21.1"
-k8s-openapi = { version = "0.21.1", features = ["schemars", "v1_29"] }
-kubewarden-policy-sdk = "0.10.0"
+k8s-openapi-derive = "0.22.0"
+k8s-openapi = { version = "0.22.0", features = ["schemars", "v1_29"] }
+kubewarden-policy-sdk = "0.10.1"
 lazy_static = "1.4"
 schemars = { version = "0.8", features = ["impl_json_schema"] }
 serde_json = "1.0"
