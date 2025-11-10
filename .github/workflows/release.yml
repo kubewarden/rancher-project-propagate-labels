@@ -12,7 +12,7 @@ jobs:
 
   test:
     name: run tests and linters
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rust.yml@847a8b8af7715a709c56426d3d298a90d7a6dad3 # v4.5.13
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rust.yml@247608f0b5a1562a6fd2576e5b2e6cbe62551baf # v4.5.15
 
   release:
     needs: test
@@ -24,6 +24,6 @@ jobs:
       # Required by cosign keyless signing
       id-token: write
 
-    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rust.yml@847a8b8af7715a709c56426d3d298a90d7a6dad3 # v4.5.13
+    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rust.yml@247608f0b5a1562a6fd2576e5b2e6cbe62551baf # v4.5.15
     with:
       oci-target: ghcr.io/kubewarden/policies/rancher-project-propagate-labels
