@@ -21,6 +21,6 @@ serde = { version = "1.0", features = ["derive"] }
 slog = "2.7"
 
 [dev-dependencies]
-mockall = "0.13"
+mockall = "0.14"
 serial_test = "3.1"
 rstest = "0.26"
