@@ -459,9 +459,9 @@ checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
 
 [[package]]
 name = "k8s-openapi"
-version = "0.26.0"
+version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d13f06d5326a915becaffabdfab75051b8cdc260c2a5c06c0e90226ede89a692"
+checksum = "06d9e5e61dd037cdc51da0d7e2b2be10f497478ea7e120d85dad632adb99882b"
 dependencies = [
  "base64",
  "chrono",
@@ -472,15 +472,15 @@ dependencies = [
 
 [[package]]
 name = "k8s-openapi-codegen-common"
-version = "0.26.0"
+version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0c338bed5aa95a41a68524373215dce32096959277e44aa34a47b39bb85dde3"
+checksum = "1090c033b930718df81e3f1c5493ef7cd6db42256a115c41f3e755b2a04474c8"
 
 [[package]]
 name = "k8s-openapi-derive"
-version = "0.26.0"
+version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca173070906b42a3cc77fc871c5446cd818a656302d30f9caea376eb791b6e6a"
+checksum = "383d9a7f04e99fbfba656534f78288d0b9e39b5772c277a8c907a63aca78af21"
 dependencies = [
  "k8s-openapi-codegen-common",
  "proc-macro2",
